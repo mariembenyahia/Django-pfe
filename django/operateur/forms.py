@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Operateur, Claim
+from .models import User, Operateur
 
 class SignUpForm(forms.ModelForm):
     class Meta:
@@ -20,8 +20,5 @@ class LoginForm2(forms.ModelForm):
         model = Operateur
         fields = ['name', 'email', 'numtel','password']
 
-class ReclamationForm(forms.Form):
-    class Meta:
-        model = Claim  
-        fields = ['text', 'user', 'operator','heure']
+
 

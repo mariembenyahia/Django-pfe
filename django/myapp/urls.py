@@ -22,3 +22,4 @@ urlpatterns = [
     path('operateur/' , include('operateur.urls')),
     path('operateur/signup/' , include('operateur.urls'))
 ]
+

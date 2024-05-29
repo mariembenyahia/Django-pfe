@@ -16,9 +16,29 @@ class User(models.Model):
     ]
     operateur = models.CharField(max_length=100, choices=drone_choices, default='orange')
 
+class Firewall(models.Model):
+    ip = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    description = models.CharField(max_length=15)
 
-class Claim(models.Model):
-    text = models.TextField()
-    user = models.CharField(max_length=100)
-    operator=models.CharField(max_length=100)
-    heure=models.CharField(max_length=100)
+class FirewallPolicy(models.Model):
+    name = models.CharField(max_length=255)
+    source = models.CharField(max_length=255)
+    destination = models.CharField(max_length=15)
+    fortinet = models.CharField(max_length=15)
+
+class SDWAN(models.Model):
+    sdwanzone = models.CharField(max_length=255)
+    sdwanmembers = models.CharField(max_length=255)
+    gateway = models.CharField(max_length=255)
+    cost = models.CharField(max_length=15)
+    download = models.CharField(max_length=15)
+    upload = models.CharField(max_length=15)
+    fortigate = models.CharField(max_length=15)
+
+class SDWANRules(models.Model):
+    name = models.CharField(max_length=255)
+    source = models.CharField(max_length=255)
+    destination = models.CharField(max_length=15)
+    members = models.CharField(max_length=15)
+    fortigate = models.CharField(max_length=15)

@@ -84,7 +84,10 @@
               <div class="project">
                   <div class="card">
                       <div class="card-header">
-                          <h3> Fortigate</h3>
+                           <h3 > Fortigate</h3>
+                           <div style="padding-right:60%">
+                            <select><option   value="option1">fortinet12</option><option value="option2">fortinet13</option><option value="option3">fortinet14</option></select>
+                           </div>
                           <button id="add-new-btn">
                               add new <span class="las la-arrow-right"></span>
                           </button>
@@ -97,14 +100,13 @@
                 <th>IP ROUTE</th>
                 <th>INTERFACE</th>
                 <th>DESTINATION</th>
-                <th>FORTIGATE</th>
                 <th>Action</th>
             </tr>
             <tr>
                 <td>0.0.0.0/0</td>
-                <td>WAN(port5)</td>
+                <td>WAN(port1)</td>
                 <td>10.199.199.1</td>
-                <td>fortinet14</td>
+                
                 <td>
                     <button class="edit-btn"><i class="fas fa-pen"></i></button>
                     <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
@@ -114,52 +116,12 @@
                 <td>10.0.0.0/30</td>
                 <td>LAN1(port1)</td>
                 <td>192.168.20.254</td>
-                <td>fortinet14</td>
                 <td>
                     <button class="edit-btn"><i class="fas fa-pen"></i></button>
                     <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
                 </td>
             </tr>
-            <tr>
-                <td>50.0.0.0/30</td>
-                <td>LAN(port2)</td>
-                <td>192.168.10.254</td>
-                <td>fortinet12</td>
-                <td>
-                    <button class="edit-btn"><i class="fas fa-pen"></i></button>
-                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td>0.0.0.0/0</td>
-                <td>WAN2(port7)</td>
-                <td>30.199.199.1</td>
-                <td>fortinet12</td>
-                <td>
-                    <button class="edit-btn"><i class="fas fa-pen"></i></button>
-                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td>0.0.0.0/0</td>
-                <td>WAN(port4)</td>
-                <td>30.199.199.1</td>
-                <td>fortinet13</td>
-                <td>
-                    <button class="edit-btn"><i class="fas fa-pen"></i></button>
-                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td>20.0.0.0/30</td>
-                <td>LAN(port2)</td>
-                <td>192.168.30.254</td>
-                <td>fortinet13</td>
-                <td>
-                    <button class="edit-btn"><i class="fas fa-pen"></i></button>
-                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
+           
         </tr>
     </tbody>
 </table>
@@ -188,16 +150,14 @@
         cell1.innerHTML = '<input type="text" value="0.0.0.0/0">';
 
         var cell2 = newRow.insertCell(1);
-        cell2.innerHTML = '<select><option value="option1">LAN(port2)</option><option value="option2">LAN1(port1)</option><option value="option3">WAN(port4)</option><option value="option4">WAN(port5)</option><option value="option5">WAN2(port7)</option></select>';
+        cell2.innerHTML = '<select><option value="option1">LAN(port2)</option><option value="option2">LAN1(port1)</option><option value="option3">WAN2(port3)</option><option value="option4">WAN(port5)</option><option value="option5">WAN2(port7)</option></select>';
 
 
         var cell3 = newRow.insertCell(2);
         cell3.innerHTML = '<input type="text" value="0.0.0.0">';
 
-        var cell4 = newRow.insertCell(3);
-        cell4.innerHTML = '<select><option value="option1">fortinet12</option><option value="option2">fortinet13</option><option value="option3">fortinet14</option></select>';
-        
-        var cell5 = newRow.insertCell(4);
+
+        var cell5 = newRow.insertCell(3);
         cell5.innerHTML = ' <div class="card-header"><button id="add-new-btn">Validate <span class="las la-arrow-right"></span></button></div> ';
         
     });

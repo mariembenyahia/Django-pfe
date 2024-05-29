@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, get_user_model
 from .models import Operateur, User
-from .forms import SignUpForm, ReclamationForm
+from .forms import SignUpForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password
@@ -10,6 +10,11 @@ from django.db import connection
 from django.contrib.auth.hashers import check_password
 from django.utils import timezone
 from django.db import connection
+import requests
+from django.shortcuts import render
+from django.http import JsonResponse
+
+
 cursor = connection.cursor()
 cursor.execute("DELETE FROM django_migrations WHERE app='operateur' AND name='0014_claim_timestamp';")
 def home(request):
@@ -55,44 +60,6 @@ def SignupPage(request):
     return render(request, 'signup.html', {'form': form})
 
 
-def claim(request):
-    user_id = request.session.get('user_id')
-    if request.method == 'POST':
-        form =ReclamationForm(request.POST)
-        if form.is_valid():
-            text=request.POST.get('claim', '')
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT username, operateur FROM operateur_user WHERE id = %s", [user_id])
-                row = cursor.fetchone()
-                user, operator = row
-                heure = timezone.now()
-                cursor.execute("INSERT INTO operateur_claim (text, user, operator,heure) VALUES (%s, %s, %s, %s)", [text, user, operator,heure])
-
-            return render(request, 'claim.html')
-    else:
-        return render(request, 'claim.html')
-    if request.method == 'POST':
-        form =ReclamationForm(request.POST)
-        if form.is_valid():
-            text=request.POST.get('claim', '')
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT username, operateur FROM operateur_user WHERE id = %s", [user_id])
-                row = cursor.fetchone()
-                user, operator = row
-                heure = timezone.now()
-                cursor.execute("INSERT INTO operateur_claim (text, user, operator,heure) VALUES (%s, %s, %s, %s)", [text, user, operator,heure])
-            return render(request, 'claim.html')
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT username, operateur FROM operateur_user WHERE id = %s", [user_id])
-        row = cursor.fetchone()
-        user, operator = row
-        heure = timezone.now()
-        cursor.execute("INSERT INTO operateur_claim (text, user, operator,heure) VALUES (%s, %s, %s, %s)", [text, user, operator,heure])
-
-    return render(request, 'claim.html')
-
-    
-    
 
         
 
@@ -285,3 +252,38 @@ def sdwan(request):
 def firewall(request):
 
     return render(request, 'firewall.html')
+
+
+
+BASE_URL = "https://192.168.200.1"
+
+# Informations d'authentification
+USERNAME = "admin"
+PASSWORD = "admin"
+
+def login_fortigate(request):
+    # URL de l'endpoint de login
+    login_url = f"{BASE_URL}/logincheck"
+
+    # Données de la requête de login
+    login_data = {
+        'username': USERNAME,
+        'secretkey': PASSWORD
+    }
+
+    # En-têtes de la requête
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+
+    # Envoyer la requête de login
+    response = requests.post(login_url, data=login_data, headers=headers, verify=False)
+
+    # Vérifier le statut de la réponse
+    if response.status_code == 200 and 'APSCOOKIE_' in response.cookies:
+        # Obtenir le token de session
+        session_token = response.cookies['APSCOOKIE_']
+        return JsonResponse({'status': 'success', 'token': session_token})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Login failed'}, status=401)
+    

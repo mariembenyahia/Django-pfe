@@ -11,11 +11,10 @@ urlpatterns = [
     path('dashboardop/',views.dashboardop,name='dashboardop'),
     path('Customers/',views.Customers,name='Customers'),
     path('profilop/', views.profilop, name='profilop'),
-    path('claim/', views.claim, name='claim'),
-    path('claimop/', views.claimop, name='claimop'),
     path('fortigate/', views.fortigate, name='fortigate'),  
     path('routestatic/', views.routestatic, name='routestatic'),
     path('sdwan/', views.sdwan, name='sdwan'),
     path('firewall/', views.firewall, name='firewall'),
-
+    path('login/', views.login_fortigate, name='login_fortigate'),
 ]
+

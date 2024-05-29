@@ -151,7 +151,7 @@ header {
   padding: 1rem 1.5rem;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   position: fixed;
-  left: 345px;
+  left: 255px;
   width: calc(100% - 345px);
   top: 0;
   z-index: 100;
@@ -180,7 +180,7 @@ header label span {
 
 .search-wrapper span {
   display: inline-block;
-  padding: 0rem 1rem;
+  padding: 1rem 1rem;
   font-size: 1.5rem;
 }
 
@@ -197,7 +197,7 @@ header label span {
 }
 
 .user-wrapper img {
-  border-radius: 50%;
+  border-radius: 100%;
   margin-right: 1rem;
 }
 
@@ -208,9 +208,9 @@ header label span {
 }
 
 main {
-  margin-top: 75px;
-  padding: 2rem 1.5rem;
-  background: #f1f5f9;
+  margin-top: 70px;
+  padding: 4rem 1rem;
+  background: #f4f9fd;
   min-height: calc(100vh - 90px);
 }
 
@@ -706,7 +706,7 @@ td input:hover {
         display: none; /* Caché par défaut */
         position: fixed; /* Position fixe pour rester au-dessus du contenu */
         z-index: 1; /* Place la fenêtre modale au-dessus du reste du contenu */
-        left: 0;
+        left: 50;
         top: 0;
         width: 100%;
         height: 100%;
@@ -728,7 +728,7 @@ td input:hover {
     .close {
         color: #aaa;
         float: right;
-        font-size: 28px;
+        font-size: 8px;
         font-weight: bold;
     }
 
@@ -738,3 +738,28 @@ td input:hover {
         text-decoration: none;
         cursor: pointer;
     }
+
+
+         .card-header select  {
+          border-radius: 10px;
+            background-color: #212f5c;
+            color: #ffffff;
+            border-bottom: 1px solid #bdc3c7;
+            font-size: .8rem;
+            padding: .5rem 1rem;
+            border: 1px solid var(--ma);
+        }
+              .card-header select option {
+                width: 100%; /* Largeur de 100% pour remplir la cellule */
+                padding: 8px; /* Espacement interne */
+                font-size: 14px; /* Taille de la police */
+                border: none; /* Pas de bordure */
+                background-color: #d8d8d8; /* Couleur de fond */
+                color:  #212f5c; /* Couleur du texte */
+                appearance: none; /* Supprime les styles natifs du navigateur */
+                border-radius: 5px; /* Coins arrondis */
+                box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre interne pour un effet de profondeur */
+                transition: all 0.3s ease; /* Transition fluide */
+                height: 40px; /* Hauteur fixe pour les éléments */
+        } 
+
